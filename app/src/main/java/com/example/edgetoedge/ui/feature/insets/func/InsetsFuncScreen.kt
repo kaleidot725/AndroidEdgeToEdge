@@ -1,44 +1,80 @@
 package com.example.edgetoedge.ui.feature.insets.func
 
-import androidx.compose.foundation.layout.Box
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InsetsFuncScreen(
-    onClose: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Scaffold(
-        modifier = modifier,
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text("Insets Func".uppercase()) },
-                navigationIcon = {
-                    IconButton(
-                        onClick = onClose,
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = "Close",
-                        )
-                    }
-                },
-            )
-        },
+fun InsetsFuncScreen(onClose: () -> Unit) {
+    BackHandler {
+        onClose()
+    }
+
+    val items = (0 until 100).toList()
+
+    Row(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Color.Green.copy(alpha = 0.5f)),
     ) {
-        Box(modifier = Modifier.padding(it)) {
+        Column(
+            modifier =
+                Modifier
+                    .weight(1.0f)
+                    .background(Color.Red.copy(alpha = 0.5f))
+                    .verticalScroll(rememberScrollState())
+                    .statusBarsPadding()
+                    .navigationBarsPadding()
+                    .background(Color.Blue.copy(alpha = 0.5f)),
+        ) {
+            items.forEach { index ->
+                Text(
+                    text = "リスト1 : $index",
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+            }
+        }
+
+        Column(
+            modifier =
+                Modifier
+                    .weight(1.0f)
+                    .background(Color.Yellow.copy(alpha = 0.5f))
+                    .verticalScroll(rememberScrollState())
+                    .statusBarsPadding()
+                    .navigationBarsPadding()
+                    .background(Color.Cyan.copy(alpha = 0.5f)),
+        ) {
+            items.forEach { index ->
+                Text(
+                    text = "リスト2 : $index",
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+            }
         }
     }
 }

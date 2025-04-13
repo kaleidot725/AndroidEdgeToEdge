@@ -2,6 +2,7 @@ package com.example.edgetoedge.ui.feature.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -18,11 +19,10 @@ import com.example.edgetoedge.MainRoute
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
     onNavigate: (MainRoute) -> Unit,
 ) {
     Scaffold(
-        modifier = modifier,
+        modifier = Modifier.fillMaxSize(),
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("HOME") },
@@ -33,34 +33,16 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(4.dp),
             modifier = Modifier.padding(it),
         ) {
-            Button(
-                onClick = { onNavigate(MainRoute.INSETS_FUNC) },
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-            ) {
-                Text("Insets Function")
-            }
-
-            Button(
-                onClick = { onNavigate(MainRoute.INSETS_MODIFIER) },
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-            ) {
-                Text("Insets Modifier")
-            }
-
-            Button(
-                onClick = { onNavigate(MainRoute.PADDING_MODIFIER) },
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-            ) {
-                Text("Padding Modifier")
+            MainRoute.entries.filter { MainRoute.HOME != it }.forEach {
+                Button(
+                    onClick = { onNavigate(it) },
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp),
+                ) {
+                    Text(it.name)
+                }
             }
         }
     }
