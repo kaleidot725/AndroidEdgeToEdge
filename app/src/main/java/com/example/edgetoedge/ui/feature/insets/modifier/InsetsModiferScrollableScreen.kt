@@ -1,14 +1,16 @@
-package com.example.edgetoedge.ui.feature.insets.func
+package com.example.edgetoedge.ui.feature.insets.modifier
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -20,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun InsetsFuncScreen(onClose: () -> Unit) {
+fun InsetsModifierScrollableScreen(onClose: () -> Unit) {
     BackHandler {
         onClose()
     }
@@ -39,8 +41,8 @@ fun InsetsFuncScreen(onClose: () -> Unit) {
                     .weight(1.0f)
                     .background(Color.Red.copy(alpha = 0.5f))
                     .verticalScroll(rememberScrollState())
-                    .statusBarsPadding()
-                    .navigationBarsPadding()
+                    .windowInsetsPadding(WindowInsets.statusBars)
+                    .windowInsetsPadding(WindowInsets.navigationBars)
                     .background(Color.Blue.copy(alpha = 0.5f)),
         ) {
             items.forEach { index ->
@@ -61,8 +63,8 @@ fun InsetsFuncScreen(onClose: () -> Unit) {
                     .weight(1.0f)
                     .background(Color.Yellow.copy(alpha = 0.5f))
                     .verticalScroll(rememberScrollState())
-                    .statusBarsPadding()
-                    .navigationBarsPadding()
+                    .windowInsetsPadding(WindowInsets.statusBars)
+                    .windowInsetsPadding(WindowInsets.navigationBars)
                     .background(Color.Cyan.copy(alpha = 0.5f)),
         ) {
             items.forEach { index ->
@@ -82,7 +84,7 @@ fun InsetsFuncScreen(onClose: () -> Unit) {
 @Preview
 @Composable
 private fun Preview() {
-    InsetsFuncScreen(
+    InsetsModifierScrollableScreen(
         onClose = {},
     )
 }
