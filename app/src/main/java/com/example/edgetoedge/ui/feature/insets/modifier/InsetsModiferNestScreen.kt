@@ -4,6 +4,7 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.statusBars
@@ -24,7 +25,7 @@ fun InsetsModifierNestScreen(onClose: () -> Unit) {
             Modifier
                 .fillMaxSize()
                 .background(Color.Red.copy(alpha = 0.5f))
-                .windowInsetsPadding(WindowInsets.statusBars)
+                .consumeWindowInsets(WindowInsets.statusBars)
                 .windowInsetsPadding(WindowInsets.navigationBars),
     ) {
         Box(
